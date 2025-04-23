@@ -1,0 +1,28 @@
+FROM planetra.gitlab.yandexcloud.net:5050/tech/python:3.12
+
+ARG DB_HOST
+ARG DB_PORT
+ARG DB_USER
+ARG DB_PASS
+ARG DB_NAME
+ARG RMQ_USER
+ARG RMQ_PASS
+ARG RMQ_HOST
+
+ENV DB_HOST=$DB_HOST
+ENV DB_PORT=$DB_PORT
+ENV DB_USER=$DB_USER
+ENV DB_PASS=$DB_PASS
+ENV DB_NAME=$DB_NAME
+ENV RMQ_USER=$RMQ_USER
+ENV RMQ_PASS=$RMQ_PASS
+ENV RMQ_HOST=$RMQ_HOST
+ENV PYTHONPATH "${PYTHONPATH}:/app"
+
+WORKDIR /app
+
+ADD . /app
+
+RUN pip install --no-cache-dir -r requirements.txt
+
+CMD ["python", "-u", "./docs/main.py"]
