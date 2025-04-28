@@ -1,4 +1,4 @@
-FROM planetra.gitlab.yandexcloud.net:5050/tech/python:3.12
+FROM python:3.12
 
 ARG DB_HOST
 ARG DB_PORT
